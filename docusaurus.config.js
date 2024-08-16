@@ -4,7 +4,7 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -26,7 +26,6 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
@@ -47,11 +46,14 @@ const config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
-          showReadingTime: true,
+          showReadingTime: true,          
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
+          blogSidebarTitle: 'All posts',
+          blogSidebarCount: 3, // tổng số bài post xuất hiện
+          postsPerPage: 4,                   
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -60,13 +62,13 @@ const config = {
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
-        },
+        },              
         theme: {
           customCss: './src/css/custom.css',
         },
       }),
     ],
-  ],
+  ], 
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -92,7 +94,13 @@ const config = {
             position: 'left',
             label: 'HTML',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: 'Blog', position: 'left'},                  
+          {to: '/news', label: 'News', position: 'left'},                  
+          {
+            href: 'https://course.ezfrontend.com/javascript',
+            label: 'Khoá học Javascript',
+            position: 'right',
+          },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -150,6 +158,20 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'news',
+        routeBasePath: 'news',
+        path: './src/news',
+        blogTitle: 'News',
+        blogDescription: 'Tin tức và cập nhật',
+        showReadingTime: true,
+      },
+    ],
+  ],
 };
 
 export default config;
